@@ -1,4 +1,19 @@
+           "_                        
+ "_ __ ___ (_)_ __  _ __   __ _  ___ 
+"| '_ ` _ \| | '_ \| '_ \ / _` |/ __|
+"| | | | | | | | | | |_) | (_| | (__ 
+"|_| |_| |_|_|_| |_| .__/ \__,_|\___|
+                  "|_|               
+
 packadd minpac
+
+if !exists('*minpac#init')
+"Install minpac if doesn't exist !
+echo "Minpac did not installed, installing..."
+!git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+source ~/.config/nvim/init.vim
+call minpac#update('', {'do': 'call minpac#status()'})
+else
 call minpac#init()
 
 call minpac#add('yuttie/comfortable-motion.vim', {'type': 'opt'})
@@ -14,29 +29,18 @@ call minpac#add('prettier/vim-prettier', {'type': 'opt', 'do': '!npm install'})
 call minpac#add('jparise/vim-graphql', {'type': 'opt'})
 call minpac#add('iamcco/markdown-preview.nvim', {'type': 'opt', 'do': '!cd app & npm install'})
 call minpac#add('prettier/vim-prettier', {'type': 'opt'})
+call minpac#add('neovim/nvim-lsp', {'type': 'opt'})
+call minpac#add('haorenW1025/completion-nvim', {'type': 'opt'})
 "call minpac#add('dense-analysis/ale', {'type': 'opt'})
 "call minpac#add('Shougo/deoplete.nvim', {'type': 'opt', 'do': 'UpdateRemotePlugins'})
-
 "call minpac#add('JamshedVesuna/vim-markdown-preview', {'type': 'opt'})
 "call minpac#add('vimlab/split-term.vim', {'type': 'opt'})
 "call minpac#add('liuchengxu/vista.vim', {'type': 'opt'})
-call minpac#add('neovim/nvim-lsp', {'type': 'opt'})
-call minpac#add('haorenW1025/completion-nvim', {'type': 'opt'})
 
-"call minpac#update()
-
-set tabstop=4
-set softtabstop=4
-set shiftwidth=0
-
-set backupcopy=yes
 
 packadd vim-prettier
 let g:prettier#quickfix_enabled = 0
 let g:prettier#exec_cmd_async = 1
-
-"let g:prettier#config#tab_width = 2
-"let g:prettier#config#use_tabs = "false"
 
 autocmd BufWrite *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
@@ -81,19 +85,12 @@ packadd vim-jsx-pretty
 packadd vim-vue
 packadd comfortable-motion.vim
 
-set number
-set relativenumber
-set cursorline
-
 autocmd TermOpen * setlocal nonumber nocursorline
 autocmd TermOpen * setlocal norelativenumber nocursorline
-
-set termguicolors
 
 packadd vimade
 packadd dracula
 colorscheme dracula
-set background=dark
 
 packadd lightline.vim
 
@@ -109,21 +106,17 @@ function! MyFileformat()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'dracula',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filetype': 'MyFiletype',
-      \   'fileformat': 'MyFileformat',
-      \ },
-      \ }
+	  \ 'colorscheme': 'dracula',
+	  \ 'active': {
+	  \   'left': [ [ 'mode', 'paste' ],
+	  \             [ 'readonly', 'filename', 'modified' ] ]
+	  \ },
+	  \ 'component_function': {
+	  \   'filetype': 'MyFiletype',
+	  \   'fileformat': 'MyFileformat',
+	  \ },
+	  \ }
 
-"FZF
-set rtp+=~/.fzf
-noremap <silent> <F3> :FZF<CR>
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 packadd vim-javascript
 packadd yats.vim
@@ -141,7 +134,6 @@ packadd yats.vim
 "\ }
 "noremap <silent> <F4> :Vista!!<CR>
 
-set list lcs=tab:\|\ 
 
 packadd nvim-lsp
 packadd completion-nvim
@@ -164,6 +156,29 @@ autocmd FileType javascript.tsx setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 autocmd FileType html setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd FileType css setlocal omnifunc=v:lua.vim.lsp.omnifunc
+endif
+
+command! PackUpdate call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean  call minpac#clean()
+command! PackStatus call minpac#status()
+
+  "___ ___  _ __ ___  _ __ ___   ___  _ __  
+ "/ __/ _ \| '_ ` _ \| '_ ` _ \ / _ \| '_ \ 
+"| (_| (_) | | | | | | | | | | | (_) | | | |
+ "\___\___/|_| |_| |_|_| |_| |_|\___/|_| |_|
+                                           "
+          "_   _   _                 
+ "___  ___| |_| |_(_)_ __   __ _ ___ 
+"/ __|/ _ \ __| __| | '_ \ / _` / __|
+"\__ \  __/ |_| |_| | | | | (_| \__ \
+"|___/\___|\__|\__|_|_| |_|\__, |___/
+                          "|___/     
+
+set rtp+=~/.fzff
+noremap <silent> <F3> :FZF<CR>
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+set termguicolors
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -172,8 +187,14 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
-" Avoid showing message extra message when using completion
-"set shortmess+=c
+set list lcs=tab:\|\ 
 
-"rasi syntax highlight
-"au BufNewFile,BufRead /*.rasi setf css
+set tabstop=4
+set softtabstop=4
+set shiftwidth=0
+
+set backupcopy=yes
+
+set number
+set relativenumber
+set cursorline

@@ -16,7 +16,7 @@ call minpac#update('', {'do': 'call minpac#status()'})
 else
 call minpac#init()
 
-call minpac#add('yuttie/comfortable-motion.vim', {'type': 'opt'})
+"call minpac#add('yuttie/comfortable-motion.vim', {'type': 'opt'})
 call minpac#add('itchyny/lightline.vim', {'type': 'opt'})
 call minpac#add('TaDaa/vimade', {'type': 'opt'})
 call minpac#add('dracula/vim', {'type': 'opt', 'name': 'dracula'})
@@ -83,7 +83,7 @@ nmap <C-p> <Plug>MarkdownPreviewToggle
 let g:vim_jsx_pretty_colorful_config = 1
 packadd vim-jsx-pretty
 packadd vim-vue
-packadd comfortable-motion.vim
+"packadd comfortable-motion.vim
 
 autocmd TermOpen * setlocal nonumber nocursorline
 autocmd TermOpen * setlocal norelativenumber nocursorline
@@ -174,7 +174,7 @@ command! PackStatus call minpac#status()
 "|___/\___|\__|\__|_|_| |_|\__, |___/
                           "|___/     
 
-set rtp+=~/.fzff
+set rtp+=~/.fzf
 noremap <silent> <F3> :FZF<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 

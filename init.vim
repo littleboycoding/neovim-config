@@ -85,9 +85,6 @@ packadd vim-jsx-pretty
 packadd vim-vue
 "packadd comfortable-motion.vim
 
-autocmd TermOpen * setlocal nonumber nocursorline
-autocmd TermOpen * setlocal norelativenumber nocursorline
-
 packadd vimade
 packadd dracula
 colorscheme dracula
@@ -198,3 +195,6 @@ set backupcopy=yes
 set number
 set relativenumber
 set cursorline
+
+autocmd TermOpen * setlocal nonumber nocursorline
+autocmd TermOpen * setlocal norelativenumber nocursorline
